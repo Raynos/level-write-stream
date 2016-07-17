@@ -19,7 +19,9 @@ function LevelWriteStream(db) {
             }
 
             queue.push(chunk)
-            stream.once("_drain", callback)
+            if (typeof callback == 'function') {
+                stream.once("_drain", callback)
+            }
         }
 
         function drain() {
